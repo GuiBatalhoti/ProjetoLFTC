@@ -1,0 +1,32 @@
+*{
+	font-family: sans-serif;
+}
+
+body{
+	margin: 10px;
+	background-color: #ccc;
+}
+
+#divInputREGEX{
+	margin: 10px;
+}
+
+#divInput01, #divInput02{
+	margin: 10px;
+}
+
+#tableInputREGEX{
+	padding: 2%;
+	text-align: left;
+	background-color: #FFF;
+	border-radius: 10px;
+}
+
+#divREGEX{
+	margin: auto;
+}
+
+.container{
+	display: flex;
+	height: 50vh;
+}

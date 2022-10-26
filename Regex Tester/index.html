@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Projeto de LFTC</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body class="container">
+    <div id="divREGEX">
+		<table id="tableInputREGEX" cellspacing="0">
+			<tr>
+				<th colspan="2">
+					Insira a expressão regular:<br>
+					precisa começar com "^" e terminar com "$"				
+				</th>
+				
+			</tr>
+			<tr>
+				<th>Expressão</th>
+				<th>
+					<div id="divInputREGEX">
+						<input type="text" id="inputREGEX" onkeyup="regexInput()"></input>
+					</div>
+				</th>
+			</tr>
+			<tr>
+				<th>Teste 1</th>
+				<th>
+					<div id="divInput01">
+						<input type="text" id="inputTeste01" onkeyup="regexTest()"></input>
+					</div>
+				</th>
+			</tr>
+			<tr>
+				<th>Teste 2</th>
+				<th>
+					<div id="divInput01">
+						<input type="text" id="inputTeste02" onkeyup="regexTest()"></input>
+					</div>
+				</th>
+				
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
