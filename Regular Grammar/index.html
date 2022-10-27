@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Projeto de LFTC</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body class="container">
+    <div id="divGrammar">
+		<table id="tableInputGrammar" cellspacing="0">
+			<tr>
+				<th colspan="3">
+					Teste de gramática regular à esquerda				
+				</th>
+			</tr>
+			<tr>
+                <th style="width:15%">
+                    <div id="divInput01">
+						<textarea id="regras_gramatica" cols="30" rows="10">
+S -> A B
+A -> a A | a
+B -> b</textarea>
+					</div>
+				</th>
+			</tr>
+			<tr>
+				<th colspan="2">Expressão a ser testada</th>
+				<th>
+					<div id="divInputGrammar">
+						<input type="text" id="inputGrammar" onkeyup="testGrammar()"></input>
+					</div>
+				</th>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

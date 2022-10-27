@@ -1,0 +1,44 @@
+*{
+	font-family: sans-serif;
+}
+
+body{
+	margin: 10px;
+	background-color: #ccc;
+}
+
+#divInputGrammar{
+	margin: 10px;
+}
+
+#inputGrammar{
+	width: 100%;
+}
+
+#divInput01, #divInput02{
+	margin: 10px;
+}
+
+#tableInputGrammar{
+	padding: 2%;
+	text-align: left;
+	background-color: #FFF;
+	border-radius: 10px;
+}
+
+#divGrammar{
+	margin: auto;
+}
+
+.container{
+	display: flex;
+	height: 50vh;
+}
+
+.grammarStates{
+	width:50px;
+}
+
+.grammarFunctions{
+	width: 100%;
+}
