@@ -35,12 +35,13 @@ function testGrammar(){
 
 function testeRegrasProducao(){
     let states = pegaRegras();
-
+    let resultado = true;
     let inputRegras = document.getElementById('regras_gramatica')
     for (let estado of states){
-        mudaCorTeste(inputRegras, regex_gramatica_direita.test(estado.split(' ').join('')))
-        console.log(estado.split(' ').join(''))
+        resultado = resultado & regex_gramatica_direita.test(estado.split(' ').join(''));
+        console.log(resultado)
     }
+    mudaCorTeste(inputRegras, resultado);
 }
 
 function pegaRegras(){
