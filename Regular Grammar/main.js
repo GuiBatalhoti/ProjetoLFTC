@@ -3,7 +3,7 @@ var imported = document.createElement('script');
 imported.src = './earley-oop.min.js';
 document.head.appendChild(imported);
 
-const regex_gramatica_direita = new RegExp("^[A-Z]->([a-z]*|[0-9]*)([A-Z]{0,1})$");
+const regex_gramatica_direita = new RegExp("^[A-Z]->(([a-z]*|[0-9]*)([A-Z]{0,1})|ε)$");
 
 function testGrammar(){
     let states = pegaRegras()
@@ -12,6 +12,13 @@ function testGrammar(){
     let testInput = document.getElementById('inputGrammar').value;
     let token = testInput.split('');
     
+    let emptyRule = false;
+    for (let state of states){
+        if(state.indexOf('ε') != -1){
+            emptyRule = true;
+        }
+    }
+
     // biblioteca de gramática
     let gramatica = new tinynlp.Grammar(states);
 
@@ -28,8 +35,23 @@ function testGrammar(){
     // análise finalizadas
     let estado = saida.getFinishedRoot(raiz);
     
-    // verificando s eo input é válido ou não
+    // verificando se o input é válido ou não
     let input = document.getElementById('inputGrammar');
+    console.log("Estado 1 = ", estado)  
+    if(estado == null && emptyRule){
+        testInput += 'ε';
+        let token = testInput.split('');
+        
+        // contruindo o analizador
+        let saida = tinynlp.parse(
+            token,
+            gramatica,
+            raiz
+        );
+        
+        // análise finalizadas
+        estado = saida.getFinishedRoot(raiz); 
+    }
     mudaCorTeste(input, estado);
 }
 
@@ -51,7 +73,7 @@ function pegaRegras(){
      */
     let rawStates = document.getElementById('regras_gramatica').value.trim();
     rawStates = rawStates.split(' ').join('')
-    rawStates = rawStates.replace(/([A-Z])/g, ' $1');
+    rawStates = rawStates.replace(/([A-Z]|ε)/g, ' $1');
     //imprimindo os inputs
     console.log(rawStates);
 
