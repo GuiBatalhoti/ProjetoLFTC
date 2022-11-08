@@ -18,6 +18,8 @@ a:visited{
 
 #menu{
     margin: auto;
+    box-shadow: 10px 10px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
 }
 
 #table_menu{
@@ -35,4 +37,7 @@ a:visited{
 #regex_index:hover, #grammar_index:hover{
     background-color: #0adbf2;
     border-radius: 10px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+    transition: 0.75s;
 }
