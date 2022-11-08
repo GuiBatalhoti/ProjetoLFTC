@@ -3,7 +3,7 @@ var imported = document.createElement('script');
 imported.src = './earley-oop.min.js';
 document.head.appendChild(imported);
 
-const regex_gramatica_direita = new RegExp("^[A-Z]->(([a-z]*|[0-9]*)([A-Z]{0,1})|ε)$");
+const regex_gramatica_direita = new RegExp("^[A-Z]->(([a-z]|[0-9]){0,1}([A-Z]{0,1})|ε)$");
 
 function testGrammar(){
     let states = pegaRegras()
