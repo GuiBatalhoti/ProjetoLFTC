@@ -1,12 +1,4 @@
-// const welcomeModal = new Modal('welcome-modal', { open: isFirstVisit() });
-// $('#welcome-modal-skip').onclick = () => welcomeModal.close();
-// $('#welcome-modal-tutorial').onclick = () => {
-//     welcomeModal.close();
-//     introJs().start();
-// };
-
 let mode = 'move';
-// window.onload = () => $('#mode [data-key="' + /*loadMode()*/ + '"]').click();
 const [canvasDesing, ctx] = createCanvas(innerWidth, innerHeight);
 document.body.appendChild(canvasDesing);
 
@@ -20,7 +12,6 @@ const config = {
 };
 
 let fa = new FiniteAutomata();
-//fa.import(load());
 fa.import('{}');
 render();
 
@@ -88,75 +79,8 @@ $$('#mode > button').forEach(
             $$('#mode > button').forEach(button => button.classList.remove('active'));
             mode = this.getAttribute('data-key');
             this.classList.add('active');
-            //saveMode();
         })
 );
-
-// $('#export-image').onclick = function () {
-//     const a = document.createElement('a');
-//     a.download = 'export-dfa';
-//     a.href = canvasDesing.toDataURL();
-//     a.click();
-// };
-
-// $('#minimizedfa').onclick = () => {
-//     try {
-//         fa = new Minimizer(fa).run();
-//         render();
-//         alert('done!');
-//     } catch (e) {
-//         handleError(e);
-//     }
-// };
-
-// $('#convert2dfa').onclick = () => {
-//     try {
-//         if (fa.start === null || !Object.keys(fa.states).includes(fa.start)) {
-//             throw new NoStartPointError();
-//         }
-
-//         let { symbols } = fa;
-//         symbols = prompt('enter symbols without space : ', symbols.join(''));
-//         if (symbols === null) return;
-//         fa.symbols = symbols.split('');
-
-//         fa = convertNFA2DFA(fa);
-//         fa = removeUselessStates(fa);
-//         render();
-//         alert('done!');
-//     } catch (e) {
-//         handleError(e);
-//     }
-// };
-
-// $('#convert2re').onclick = () => {
-//     try {
-//         const converter = new convert2RE(fa);
-//         const resFA = converter.run();
-//         let { transitions } = resFA.states[resFA.start];
-//         let symbol;
-
-//         for (symbol in transitions) {
-//             if (!transitions.hasOwnProperty(symbol)) continue;
-//             if (transitions[symbol].length) break;
-//         }
-
-//         if (confirm(`result : ${symbol} \n click ok to copy to clipboard`)) {
-//             navigator.clipboard.writeText(symbol).then(() => alert('copied to clip'));
-//         }
-//     } catch (e) {
-//         handleError(e);
-//     }
-// };
-
-// $('#complement').onclick = () => {
-//     try {
-//         fa = dfaComplement(fa);
-//         render();
-//     } catch (e) {
-//         handleError(e);
-//     }
-// };
 
 window.onkeydown = function (e) {
     if (mode !== 'move' && e.ctrlKey) {
@@ -211,7 +135,6 @@ canvasDesing.onmouseup = function ({ x, y }) {
 
         activeState = null;
 
-        //save();
         render();
     }
 
@@ -225,7 +148,6 @@ canvasDesing.onmouseup = function ({ x, y }) {
             if (symbol !== null) start.translate(symbol, target.name);
         }
         render();
-        //save();
         activeState = null;
     }
 };
@@ -244,7 +166,6 @@ canvasDesing.onmousemove = function ({ x, y }) {
         const beginState = fa.states[activeState];
         ctx.clearRect(0, 0, canvasDesing.width, canvasDesing.height);
 
-        //ctx.save();
         ctx.beginPath();
 
         ctx.moveTo(beginState.x, beginState.y);
@@ -305,7 +226,6 @@ function onTransitionRenameClick(data) {
         }
     }
 
-    // save();
     render();
 }
 
@@ -319,7 +239,6 @@ canvasDesing.oncontextmenu = function (e) {
         const state = states[0];
         const items = [
             {
-                //text: 'terminal? ' + (state.terminal ? 'não' : 'sim'),
                 text: 'terminal? ',
                 onclick: () => {
                     const states = fa.findNearestStates(contextMenuPos.x, contextMenuPos.y);
@@ -328,7 +247,6 @@ canvasDesing.oncontextmenu = function (e) {
                         const state = states[0];
                         state.terminal = !state.terminal;
 
-                        // save();
                         render();
                     }
 
@@ -382,7 +300,6 @@ canvasDesing.oncontextmenu = function (e) {
                         fa.start = newName;
                     }
 
-                    //save();
                     render();
                 },
             },
@@ -395,7 +312,6 @@ canvasDesing.oncontextmenu = function (e) {
                         const state = states[0];
                         try {
                             fa.removeState(state.name);
-                            // save();
                             render();
                         } catch (e) {
                             console.log(e);
@@ -438,12 +354,6 @@ canvasDesing.oncontextmenu = function (e) {
                 });
             }
         }
-        // if (renameTransitionsMenu.length) {
-        //     items.push({
-        //         text: 'Renomear transicoes',
-        //         children: renameTransitionsMenu,
-        //     });
-        // }
 
         if (fa.start !== state.name) {
             items.push({
@@ -455,7 +365,6 @@ canvasDesing.oncontextmenu = function (e) {
                         const state = states[0];
                         fa.start = state.name;
 
-                        // save();
                         render();
                     }
 
@@ -491,7 +400,6 @@ canvasDesing.oncontextmenu = function (e) {
                             console.log(e);
                         }
 
-                        // save();
                         contextMenu();
                         render();
                     },
@@ -500,50 +408,3 @@ canvasDesing.oncontextmenu = function (e) {
         });
     }
 };
-
-
-
-// let grammarAction = '';
-// $('#grammar-source').value = null;
-
-// $('#grammar-source').onkeyup = executeGrammarAction;
-// $$('input[name="grammar-action"]').forEach(el => el.onchange = function(){
-//     switch (this.value) {
-//         case 'simplify':
-//             grammarAction = 'simplify';
-//             break;
-
-//         case 'right-linear':
-//             grammarAction = 'toRightLinear';
-//             break;
-
-//         case 'chomsky':
-//             grammarAction = 'toCNF';
-//             break;
-
-//         case 'greibach':
-//             grammarAction = 'toGNF';
-//             break;
-//     }
-//     executeGrammarAction();
-// });
-// $('#grammar-view').onclick = () => $('#grammar').style.display = 'block';
-// $('#grammar-close').onclick = () => $('#grammar').style.display = 'none';
-
-// function executeGrammarAction(){
-//     const grammarSource = $('#grammar-source').value;
-
-//     //saveGrammar(grammarSource);
-
-//     if(!grammarAction) return;
-
-//     try{
-//         let grammar = new Grammar().parse(grammarSource);
-
-//         grammar = grammar[grammarAction]();
-//         $('#grammar-result').innerHTML = 'Result : <br><br>' + grammar.stringify().replace(/\n/g, '<br>');
-//     }catch (e) {
-//         console.log(e)
-//         $('#grammar-result').innerHTML = e;
-//     }
-// }
