@@ -146,7 +146,7 @@ class convert2RE {
             // removes current state from fa
             fa.removeState(currentState.name);
         }
-
+        
         return fa;
     }
 

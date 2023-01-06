@@ -30,14 +30,14 @@ $('#test').onclick = function () {
         const resFA = nfa2reConverter.run();
         let { transitions } = resFA.states[resFA.start];
         let symbol;
-
+        
         for (symbol in transitions) {
             if (!transitions.hasOwnProperty(symbol)) continue;
             if (transitions[symbol].length) break;
         }
 
         const machineReadableRegexConverter = new MachineReadableRegexConverter();
-        symbol = machineReadableRegexConverter.convert(symbol);
+        symbol =     machineReadableRegexConverter.convert(symbol);
         const regex = new RegExp(`^${symbol}$`);
 
         const string = prompt('Insira a string a ser testada:');
@@ -48,6 +48,24 @@ $('#test').onclick = function () {
         handleError(e);
     }
 };
+
+// celso se vc olhar aqui da um pulinho ;)
+$('#regex').onclick = function () {
+    const nfa2reConverter = new convert2RE(fa);
+    const resFA = nfa2reConverter.run();
+    let { transitions } = resFA.states[resFA.start];
+    let symbol;
+    
+    for (symbol in transitions) {
+        if (!transitions.hasOwnProperty(symbol)) continue;
+        if (transitions[symbol].length) break;
+    }
+
+    const machineReadableRegexConverter = new MachineReadableRegexConverter();
+    console.log(symbol)
+    symbol =     machineReadableRegexConverter.convert(symbol);
+    alert(symbol);
+}
 
 $('#reset').onclick = function () {
     if (!confirm('Tem certeza? Tudo será apagado!')) return;
@@ -301,7 +319,8 @@ canvasDesing.oncontextmenu = function (e) {
         const state = states[0];
         const items = [
             {
-                text: 'terminal? ' + (state.terminal ? 'não' : 'sim'),
+                //text: 'terminal? ' + (state.terminal ? 'não' : 'sim'),
+                text: 'terminal? ',
                 onclick: () => {
                     const states = fa.findNearestStates(contextMenuPos.x, contextMenuPos.y);
 
@@ -419,12 +438,12 @@ canvasDesing.oncontextmenu = function (e) {
                 });
             }
         }
-        if (renameTransitionsMenu.length) {
-            items.push({
-                text: 'Renomear transicoes',
-                children: renameTransitionsMenu,
-            });
-        }
+        // if (renameTransitionsMenu.length) {
+        //     items.push({
+        //         text: 'Renomear transicoes',
+        //         children: renameTransitionsMenu,
+        //     });
+        // }
 
         if (fa.start !== state.name) {
             items.push({
@@ -485,7 +504,7 @@ canvasDesing.oncontextmenu = function (e) {
 
 
 // let grammarAction = '';
-// $('#grammar-source').value = loadGrammar() ? loadGrammar() : '';
+// $('#grammar-source').value = null;
 
 // $('#grammar-source').onkeyup = executeGrammarAction;
 // $$('input[name="grammar-action"]').forEach(el => el.onchange = function(){

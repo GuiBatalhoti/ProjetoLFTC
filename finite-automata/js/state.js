@@ -141,8 +141,8 @@ class State {
             ctx.textBaseline = 'middle';
             ctx.fillText(
                 targets[target].map(c => (c === '' ? 'λ' : c)),
-                0,
-                -10
+                -5,
+                0
             );
             ctx.restore();
         }
